@@ -1,0 +1,41 @@
+.resister{
+    background-color: beige;
+}
+.resister h1{
+    padding-top: 20px;
+ text-align: center;
+ text-transform: uppercase;
+}
+.resister form {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+ 
+    align-items: center;
+}
+.resister form input {
+   width: 50%;
+   padding: 5px;
+   margin: 5px;
+}
+@media screen and (max-width :600px) {
+    .resister form input {
+        width: 80%;
+        padding: 5px;
+        margin: 5px;
+     }
+}
+.bbutton{
+    text-align: center;
+}
+.button{
+   width: 50%;
+   padding: 5px;
+   margin: 5px;
+ justify-content: center;
+}
+.button:hover{
+   width: 50%;
+   background-color: brown;
+   color: white;
+}
