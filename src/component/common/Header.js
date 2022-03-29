@@ -1,4 +1,4 @@
-import userEvent from '@testing-library/user-event';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../pages/useAuth/useAuth';
@@ -17,6 +17,9 @@ const Header = () => {
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <Link className="nav-link active"  to="/home">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link active"  to="/service">Service</Link>
         </li>
         
        
