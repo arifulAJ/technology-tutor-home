@@ -27,6 +27,7 @@ function App() {
       <Route path="/home" element={<Home />}>  </Route>
       <Route path="/service" element={<PrivetRout><ServicTec/></PrivetRout>}>  </Route>
   
+     
       <Route path="/login" element={<Login />}>  </Route>
       <Route path="/logout" element={<Register />}>  </Route>
 
