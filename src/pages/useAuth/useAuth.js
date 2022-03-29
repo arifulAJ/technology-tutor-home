@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import {  useEffect, useState } from "react";
 import initializeAuthentic from "../../useFirbase/firebase.initiali";
 
@@ -15,6 +15,10 @@ const useAuth=()=>{
    
   const creatPassword=(email,password)=>{
       return createUserWithEmailAndPassword(auth, email, password)
+  }
+
+  const loginWithWmail=(email,password)=>{
+  return  signInWithEmailAndPassword(auth, email, password)
   }
   const updateName=(name)=>{
     updateProfile(auth.currentUser, {
@@ -57,7 +61,8 @@ signOut(auth).then(() => {
         signinWithGoogle,
         signOuttemp,
         creatPassword,
-        updateName
+        updateName,
+        loginWithWmail
 
     }
       }

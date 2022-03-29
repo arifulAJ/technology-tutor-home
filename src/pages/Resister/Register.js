@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 import './Resister.css'
 const Register = () => {
     const {creatPassword,setUser,updateName}=useAuth();
+    let location=useLocation();
+    let navigate=useNavigate();
+    const uri=location?.state?.form ||'/'
   const  nameRef=useRef();
    const emailRef=useRef();
    const passwordRef=useRef();
@@ -21,6 +24,7 @@ const Register = () => {
     updateName(name)
     const user = userCredential.user;
     setUser(user)
+    navigate(uri)
     // ...
   })
   .catch((error) => {

@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 
 const Login = () => {
- const {user,setUser,signinWithGoogle,signOuttemp}=useAuth()
+ const {user,setUser,signinWithGoogle,signOuttemp,loginWithWmail}=useAuth();
+ let navigate = useNavigate();
+ let location = useLocation();
+ const uri=location?.state?.from||'/service'
     const emailRef=useRef();
     const passwordRef=useRef();
      
@@ -13,6 +16,18 @@ const Login = () => {
         const email=emailRef.current.value;
         const password=passwordRef.current.value;
         console.log(email,password);
+        loginWithWmail(email,password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            setUser(user);
+            navigate(uri)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
  
  
         
@@ -23,7 +38,8 @@ const Login = () => {
         .then((result) => {
           
             const user = result.user;
-            setUser(user)
+            setUser(user);
+            navigate(uri)
           }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -45,7 +61,7 @@ const Login = () => {
              if new user pleace register here? <Link to="/logOut">Register</Link>
      </div>
     
-             {user.email}
+          
            
          </div>
      );
