@@ -7,7 +7,8 @@ const GoogleProvider = new GoogleAuthProvider();
 
 initializeAuthentic()
 const useAuth=()=>{
-    const [user,setUser]=useState({})
+    const [user,setUser]=useState([]);
+    const [isloading,setIsloading]=useState(true)
     const auth = getAuth();
   const signinWithGoogle=()=>{
       return signInWithPopup(auth, GoogleProvider)
@@ -43,7 +44,7 @@ const useAuth=()=>{
           setUser({})
           
         }
-       
+        setIsloading(false)
        
       });
       return ()=>unsubscribe();
@@ -62,7 +63,9 @@ signOut(auth).then(() => {
         signOuttemp,
         creatPassword,
         updateName,
-        loginWithWmail
+        loginWithWmail,
+        isloading,
+        setIsloading
 
     }
       }

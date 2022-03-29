@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 
 const Login = () => {
- const {user,setUser,signinWithGoogle,signOuttemp,loginWithWmail}=useAuth();
+ const {user,setUser,signinWithGoogle,signOuttemp,loginWithWmail,setIsloading}=useAuth();
  let navigate = useNavigate();
  let location = useLocation();
  const uri=location?.state?.from||'/service'
@@ -19,6 +19,7 @@ const Login = () => {
         loginWithWmail(email,password)
         .then((userCredential) => {
             // Signed in 
+            setIsloading(true)
             const user = userCredential.user;
             setUser(user);
             navigate(uri)
@@ -27,7 +28,10 @@ const Login = () => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-          });
+          })
+          .finally(()=>{
+            setIsloading(false)
+          })
  
  
         
@@ -36,6 +40,7 @@ const Login = () => {
      const handelGoogleSingIn=()=>{
         signinWithGoogle()
         .then((result) => {
+            setIsloading(true)
           
             const user = result.user;
             setUser(user);
@@ -44,7 +49,10 @@ const Login = () => {
             // Handle Errors here.
             const errorCode = error.code;
             console.log(errorCode);
-          });
+          })
+          .finally(()=>{
+            setIsloading(false)
+          })
      }
      return (
          <div className='resister'>

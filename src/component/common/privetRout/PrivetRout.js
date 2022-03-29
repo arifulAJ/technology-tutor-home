@@ -5,8 +5,15 @@ import useAuthintic from './useAuthintic';
 
 
 const PrivetRout = ({children}) => {
-    const {user}=useAuthintic();
+    const {user,isloading}=useAuthintic();
     const location=useLocation();
+    if(isloading){
+        return (
+            <div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+          );
+      }
     if(user.email){
         return children;
     }

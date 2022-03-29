@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../useAuth/useAuth';
 import './Resister.css'
 const Register = () => {
-    const {creatPassword,setUser,updateName}=useAuth();
+    const {creatPassword,setUser,updateName,setIsloading}=useAuth();
     let location=useLocation();
     let navigate=useNavigate();
     const uri=location?.state?.form ||'/'
@@ -20,6 +20,7 @@ const Register = () => {
        creatPassword(email,password)
       
   .then((userCredential) => {
+    setIsloading(true)
     // Signed in 
     updateName(name)
     const user = userCredential.user;
@@ -32,7 +33,10 @@ const Register = () => {
     const errorMessage = error.message;
     console.log(errorCode );
     // ..
-  });
+  })
+  .finally(()=>{
+    setIsloading(false)
+  })
 
        
 
